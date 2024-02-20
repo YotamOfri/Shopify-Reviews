@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
             <img src={Shopify} width={30} alt="" />
-            <span className="ml-3 text-xl">Better Shopify</span>
+            <span className="ml-3 text-xl">Improvify</span>
           </a>
           <p className="mt-2 text-sm text-gray-500">
             The best thing you can do for your store.

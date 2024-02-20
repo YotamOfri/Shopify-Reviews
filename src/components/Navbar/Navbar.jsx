@@ -10,7 +10,7 @@ export default function Navbar() {
         className="w-[33%] flex items-center font-bold md:text-2xl text-sm gap-2 cursor-pointer"
       >
         <img src={ShopifyLogo} width={40} alt="" />
-        <h1>Better Shopify</h1>
+        <h1>Improvify</h1>
       </Link>
       <div className="justify-center lg:flex hidden">
         <ul className="flex gap-4 items-center">

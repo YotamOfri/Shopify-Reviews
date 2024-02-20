@@ -109,7 +109,7 @@ export default function Reviews({ rows, setRows }) {
                 setValue={(e) => handleInputChange(index, e)}
                 labelText={"Name"}
                 placeHolder={"Reviewer's Name"}
-                Icon={<CgRename />}
+                Icon={<CgRename color="white" />}
               ></Input>
               <div className="relative">
                 <Input
@@ -117,7 +117,7 @@ export default function Reviews({ rows, setRows }) {
                   value={row.photo}
                   setValue={(e) => handleInputChange(index, e)}
                   placeHolder={"Product Images"}
-                  Icon={<CgImage />}
+                  Icon={<CgImage color="white" />}
                 ></Input>
                 <div className="absolute top-0 right-2  h-full flex justify-center items-center">
                   <button
