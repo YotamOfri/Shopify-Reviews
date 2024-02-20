@@ -1,25 +1,11 @@
-import { useState } from "react";
-import Arrow from "../assets/arrow-up.svg";
-import Trash from "../assets/trash.svg";
-import X from "../assets/close.svg";
-import Download from "../assets/download.svg";
-import convertToCSV from "../utils/convertToCSV";
-import downloadCSV from "../utils/downloadCSV";
-import AddImage from "../assets/add-image.svg";
-import getRandomTime from "../utils/getRandomTime";
-export default function Form() {
-  const [productHandle, setProductHandle] = useState("");
-  const [productID, setProductID] = useState("");
-  const [rows, setRows] = useState([
-    {
-      content: "",
-      rating: 5,
-      photo: "",
-      photo_urls: [],
-      name: "",
-      isVisible: false,
-    },
-  ]);
+import AddImage from "../../assets/icons/add-image.svg";
+import Arrow from "../../assets/icons/arrow-up.svg";
+import Trash from "../../assets/icons/trash.svg";
+import X from "../../assets/icons/close.svg";
+import PropTypes from "prop-types";
+import Input from "../Input";
+import { CgRename, CgImage } from "react-icons/cg";
+export default function Reviews({ rows, setRows }) {
   const addImage = (imageUrl, index) => {
     setRows(
       rows.map((row, idx) => {
@@ -52,24 +38,6 @@ export default function Form() {
       })
     );
   };
-  const handleInputChange = (index, event) => {
-    const values = [...rows];
-    values[index][event.target.name] = event.target.value;
-    setRows(values);
-  };
-
-  const handleAddRow = () => {
-    const newRow = {
-      content: "",
-      rating: 5,
-      photo: "",
-      photo_urls: [],
-      name: "",
-      isVisible: false,
-    };
-    setRows([...rows, newRow]);
-  };
-
   const handleRemoveRow = (index) => {
     const values = [...rows];
     values.splice(index, 1);
@@ -84,65 +52,13 @@ export default function Form() {
     });
     setRows(newRows);
   };
-  const handleDownload = () => {
-    const Data = rows.map(({ isVisible, photo_urls, ...row }) => {
-      const randomTime = getRandomTime();
-      const Urls = photo_urls.join(", ");
-      const RowJson = {
-        product_handle: productHandle,
-        status: "approved",
-        content: row.content,
-        rating: row.rating,
-        photo_urls: Urls,
-        name: row.name,
-        country_code: "IL",
-        email: "tempMail@gmail.com",
-        created_at: randomTime,
-        product_id: productID,
-      };
-      return RowJson;
-    });
-    console.log(Data);
-    const csvData = convertToCSV(Data);
-    downloadCSV(csvData, "myData.csv");
+  const handleInputChange = (index, event) => {
+    const values = [...rows];
+    values[index][event.target.name] = event.target.value;
+    setRows(values);
   };
-
   return (
-    <form className="w-full max-w-xl bg-neutral-800 p-4 rounded-md mx-auto my-6 flex flex-col gap-2">
-      <div className="flex flex-col gap-1">
-        <label
-          htmlFor="product-handle"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Product Handle
-        </label>
-        <input
-          type="text"
-          id="product-handle"
-          className=" text-gray-900 text-sm rounded-lg block w-full p-2.5 bg-gray-700 outline-none dark:placeholder-gray-400 dark:text-white"
-          value={productHandle}
-          onChange={(e) => setProductHandle(e.target.value)}
-          placeholder="womens-men-winter-cotton-shoes"
-          required
-        />
-      </div>
-      <div className="flex flex-col gap-1">
-        <label
-          htmlFor="product-id"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Product Id
-        </label>
-        <input
-          type="text"
-          id="product-id"
-          className=" text-gray-900 text-sm rounded-lg  block w-full p-2.5 bg-gray-700 outline-none dark:placeholder-gray-400 dark:text-white"
-          value={productID}
-          onChange={(e) => setProductID(e.target.value)}
-          placeholder="7832967872683"
-          required
-        />
-      </div>
+    <div>
       {rows.map((row, index) => (
         <div
           key={index}
@@ -151,12 +67,12 @@ export default function Form() {
           }`}
         >
           <div
-            className={`w-full h-full ${
+            className={`w-full h-full py-2 ${
               row.isVisible ? "overflow-scroll" : "overflow-hidden"
-            } p-2`}
+            }`}
           >
             <div
-              className="text-white w-full bg-zinc-800 h-10 px-2 flex items-center justify-between cursor-pointer"
+              className="text-white w-full bg-slate-900 h-10 px-2 flex items-center justify-between cursor-pointer rounded-md border-x border-indigo-400"
               onClick={() => handleToggleVisibility(index)}
             >
               <h1> Review {index + 1}</h1>
@@ -187,26 +103,25 @@ export default function Form() {
               </div>
             </div>
             <div className="flex flex-col space-y-2 pt-2 w-full">
-              <input
-                type="text"
-                name="name"
+              <Input
+                name={"name"}
                 value={row.name}
-                onChange={(event) => handleInputChange(index, event)}
-                placeholder="Name"
-                className=" text-gray-900 text-sm rounded-lg  block w-full p-2.5 bg-gray-700 outline-none dark:placeholder-gray-400 dark:text-white"
-              />
+                setValue={(e) => handleInputChange(index, e)}
+                labelText={"Name"}
+                placeHolder={"Reviewer's Name"}
+                Icon={<CgRename />}
+              ></Input>
               <div className="relative">
-                <input
-                  type="text"
-                  name="photo"
+                <Input
+                  name={"photo"}
                   value={row.photo}
-                  onChange={(event) => handleInputChange(index, event)}
-                  placeholder="img Link"
-                  className=" text-gray-900 text-sm rounded-lg  block w-full p-2.5 bg-gray-700 outline-none dark:placeholder-gray-400 dark:text-white"
-                />
+                  setValue={(e) => handleInputChange(index, e)}
+                  placeHolder={"Product Images"}
+                  Icon={<CgImage />}
+                ></Input>
                 <div className="absolute top-0 right-2  h-full flex justify-center items-center">
                   <button
-                    className="text-white bg-zinc-800 rounded-2xl p-[6px] text-sm group"
+                    className="text-white bg-slate-400 rounded-2xl p-[2px] text-sm group"
                     type="button"
                     onClick={() => addImage(row.photo, index)}
                   >
@@ -238,6 +153,7 @@ export default function Form() {
                   </div>
                 </>
               )}
+
               <div className="w-full flex flex-col">
                 <label
                   htmlFor=""
@@ -270,24 +186,10 @@ export default function Form() {
           </div>
         </div>
       ))}
-
-      <div className="mb-3 flex gap-2">
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 duration-300 ease-in-out  focus:outline-none-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700  flex gap-2"
-          onClick={handleDownload}
-        >
-          Download
-          <img src={Download} className="w-5" alt="" />
-        </button>
-        <button
-          type="button"
-          onClick={handleAddRow}
-          className="text-black bg-white hover:opacity-70 duration-300 ease-in-out  focus:outline-none-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center flex gap-2"
-        >
-          Add Review
-        </button>
-      </div>
-    </form>
+    </div>
   );
 }
+Reviews.propTypes = {
+  rows: PropTypes.array,
+  setRows: PropTypes.func,
+};
