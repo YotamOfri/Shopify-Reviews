@@ -4,7 +4,7 @@ import Trash from "../../assets/icons/trash.svg";
 import X from "../../assets/icons/close.svg";
 import PropTypes from "prop-types";
 import Input from "../Input";
-import { CgRename, CgImage } from "react-icons/cg";
+import { CgUser, CgImage } from "react-icons/cg";
 export default function Reviews({ rows, setRows }) {
   const addImage = (imageUrl, index) => {
     setRows(
@@ -109,7 +109,7 @@ export default function Reviews({ rows, setRows }) {
                 setValue={(e) => handleInputChange(index, e)}
                 labelText={"Name"}
                 placeHolder={"Reviewer's Name"}
-                Icon={<CgRename color="white" />}
+                Icon={<CgUser color="white" />}
               ></Input>
               <div className="relative">
                 <Input
