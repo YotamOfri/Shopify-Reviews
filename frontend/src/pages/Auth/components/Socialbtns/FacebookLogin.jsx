@@ -1,5 +1,5 @@
 import FacebookLogin from "@greatsumini/react-facebook-login";
-import Facebook from "../../../../assets/Icons/facebook.svg";
+import Facebook from "../../../../assets/icons/facebook.svg";
 import { useContext } from "react";
 import { WebsiteContext } from "../../../../context/WebsiteContext";
 export default function Facebooklogin({ setErrMesg }) {
