@@ -2,7 +2,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { WebsiteContext } from "../../../../context/WebsiteContext";
-import Google from "../../../../assets/Icons/Google.svg";
+import Google from "../../../../assets/icons/Google.svg";
 export default function GoogleLogin({ setErrMesg }) {
   const { setUser } = useContext(WebsiteContext);
   const signIn = useGoogleLogin({
