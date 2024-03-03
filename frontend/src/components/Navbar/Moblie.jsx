@@ -29,22 +29,10 @@ export default function Mobile() {
           <Link onClick={() => setMobileVis(!mobileVis)} to="reviews">
             Reviews
           </Link>
-          <Link onClick={() => setMobileVis(!mobileVis)} to="#">
-            TBH
-          </Link>
-          <Link onClick={() => setMobileVis(!mobileVis)} to="#">
-            TBH
-          </Link>
+
           <p className="w-full h-[1px] bg-white"></p>
-          <a
-            onClick={() => setMobileVis(!mobileVis)}
-            className="flex"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/YotamOfri"
-          >
-            <img src={Github} width={30} alt="" />
-          </a>
+          <Link to={"/signup"}>Sign up</Link>
+          <Link to={"/login"}>Login</Link>
         </div>
       </ul>
       <div className="lg:hidden text-3xl relative z-50">

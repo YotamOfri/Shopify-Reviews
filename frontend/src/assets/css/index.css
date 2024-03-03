@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: rgb(10, 16, 29);
+  background-color: #060912;
   overflow-x: hidden;
 }
 .text-shadow {

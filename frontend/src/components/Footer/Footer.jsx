@@ -1,11 +1,12 @@
-import Shopify from "../../assets/icons/shopify.svg";
+import Logo from "../../assets/icons/Logo.svg";
+import Github from "../AdvancedIcons/Github";
 export default function Footer() {
   return (
     <footer className="text-slate-400 duration-300 ease-out body-font bg-[#060912] border-t border-slate-500">
       <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
-            <img src={Shopify} width={30} alt="" />
+            <img src={Logo} width={30} alt="" />
             <span className="ml-3 text-xl">Beautify</span>
           </a>
           <p className="mt-2 text-sm text-gray-500">
@@ -128,61 +129,61 @@ export default function Footer() {
           <p className="text-gray-500 text-sm text-center sm:text-left">
             © All rights reserved to —
             <a
-              href="https://twitter.com/knyttneve"
+              href=""
               rel="noopener noreferrer"
-              className="text-slate-400 duration-300 ease-out ml-1"
+              className="text-slate-400 duration-300 ease-out ml-1 hover:text-indigo-400"
               target="_blank"
             >
               @YotamOfri
             </a>
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
-            <a className="text-gray-500">
+            <a className="text-gray-500 cursor-pointer">
               <svg
                 fill="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="w-5 h-5"
+                className="fill-gray-500 w-5 h-5 hover:fill-indigo-500 ease-in-out duration-200"
                 viewBox="0 0 24 24"
               >
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
               </svg>
             </a>
-            <a className="ml-3 text-gray-500">
+            <a className="ml-3 text-gray-500 cursor-pointer">
               <svg
                 fill="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="w-5 h-5"
+                className="fill-gray-500 w-5 h-5 hover:fill-indigo-500 ease-in-out duration-200"
                 viewBox="0 0 24 24"
               >
                 <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
               </svg>
             </a>
-            <a className="ml-3 text-gray-500">
+            <a className="ml-3 text-gray-500 cursor-pointer">
               <svg
                 fill="none"
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="w-5 h-5"
+                className="stroke-gray-500 w-5 h-5 hover:stroke-indigo-500 ease-in-out duration-200"
                 viewBox="0 0 24 24"
               >
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
               </svg>
             </a>
-            <a className="ml-3 text-gray-500">
+            <a className="ml-3 text-gray-500 cursor-pointer">
               <svg
                 fill="currentColor"
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="0"
-                className="w-5 h-5"
+                className="fill-gray-500 w-5 h-5 hover:fill-indigo-500 ease-in-out duration-200"
                 viewBox="0 0 24 24"
               >
                 <path
@@ -191,6 +192,14 @@ export default function Footer() {
                 ></path>
                 <circle cx="4" cy="4" r="2" stroke="none"></circle>
               </svg>
+            </a>
+            <a
+              className="ml-3 text-gray-500 cursor-pointer"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/YotamOfri"
+            >
+              <Github />
             </a>
           </span>
         </div>

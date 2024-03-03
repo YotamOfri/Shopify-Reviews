@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
+import colors from "tailwindcss/colors";
+import aspectRatio from "@tailwindcss/aspect-ratio";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -49,6 +52,15 @@ export default {
       zIndex: {
         60: "60",
       },
+      colors: {
+        mainBg: "#060912",
+        secondBg: "#05070e",
+        text: "#161616",
+        "secondary-text": "#C9C9C9",
+        "light-text": "#FAFAFA",
+        NiceGray: "#2E2E2E",
+        NiceBlack: "#0E0E0E",
+      },
     },
   },
   plugins: [
@@ -56,5 +68,15 @@ export default {
       addVariant("child", "& > *");
       addVariant("child-hover", "& > *:hover");
     },
+    addVariablesForColors,
   ],
 };
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+  addBase({
+    ":root": newVars,
+  });
+}

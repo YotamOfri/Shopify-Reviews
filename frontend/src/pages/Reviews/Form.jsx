@@ -1,33 +1,24 @@
 import { useState } from "react";
 import { IoDownloadOutline, IoIdCard } from "react-icons/io5";
-import CSV from "../utils/CSV";
-import Reviews from "../components/Form/Reviews";
-import Input from "../components/Input";
+import CSV from "../../utils/CSV";
+import Reviews from "../../components/Form/Reviews";
+import Input from "../../components/Inputs/Input";
 import { IoBagHandleOutline } from "react-icons/io5";
 export default function Form() {
+  const reviewTemplate = {
+    content: "",
+    rating: 5,
+    photo: "",
+    photo_urls: [],
+    name: "",
+    isVisible: false,
+  };
   const [productHandle, setProductHandle] = useState("");
   const [productID, setProductID] = useState("");
-  const [rows, setRows] = useState([
-    {
-      content: "",
-      rating: 5,
-      photo: "",
-      photo_urls: [],
-      name: "",
-      isVisible: false,
-    },
-  ]);
+  const [rows, setRows] = useState([reviewTemplate]);
 
   const handleAddRow = () => {
-    const newRow = {
-      content: "",
-      rating: 5,
-      photo: "",
-      photo_urls: [],
-      name: "",
-      isVisible: false,
-    };
-    setRows([...rows, newRow]);
+    setRows([...rows, reviewTemplate]);
   };
 
   const handleDownload = () => {
@@ -49,7 +40,7 @@ export default function Form() {
       return RowJson;
     });
     const csvData = CSV.convertToCSV(Data);
-    CSV.downloadCSV(csvData, "myData.csv");
+    CSV.downloadCSV(csvData, "reviews.csv");
   };
 
   return (

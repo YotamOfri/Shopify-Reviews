@@ -3,7 +3,7 @@ import Arrow from "../../assets/icons/arrow-up.svg";
 import Trash from "../../assets/icons/trash.svg";
 import X from "../../assets/icons/close.svg";
 import PropTypes from "prop-types";
-import Input from "../Input";
+import Input from "../Inputs/Input";
 import { CgUser, CgImage } from "react-icons/cg";
 export default function Reviews({ rows, setRows }) {
   const addImage = (imageUrl, index) => {
