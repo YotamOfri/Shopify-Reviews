@@ -11,7 +11,7 @@ import useAuth from "./hooks/auth/useAuth";
 import Loading from "./components/animations/Loading";
 import AuthenticatedRoute from "./RoutesConfig/Routes/AuthenticatedRoute";
 import UnAuthenticatedRoute from "./RoutesConfig/Routes/UnAuthenticatedRoute";
-import Overview from "./pages/OverView/Overview";
+import Overview from "./pages/Overview/Overview";
 import AuthenticatedLayout from "./RoutesConfig/Layouts/AuthenticatedLayout";
 function MainRoutes() {
   const { user, setUser, status } = useAuth();
