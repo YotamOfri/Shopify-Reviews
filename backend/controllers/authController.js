@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const authHelpers = require("../utils/auth/authHelpers");
+const userHelpers = require("../utils/user/userHelpers");
 // @desc Login
 // @route POST /auth
 // @access Public
@@ -31,23 +32,26 @@ const GoogleLogin = asyncHandler(async (req, res) => {
     if (!response.ok)
       return res.status(response.status).json({ error: "Google Api Error" });
     const userData = await response.json();
+
     let foundUser = await User.findOne({ email: userData.email }).exec();
     if (!foundUser) {
-      let username = await authHelpers.getValidUsername(userData.name);
-      const hasedPassword = await bcrypt.hash(process.env.SOCIAL_PASSWORD, 10);
-      const userObject = {
-        username,
-        email: userData.email,
-        password: hasedPassword,
-      };
-      foundUser = await User.create(userObject);
-      if (!foundUser)
-        res.status(400).json({ message: "Invalid user data received" });
+      try {
+        let username = await authHelpers.getValidUsername(userData.name);
+        foundUser = await userHelpers.createUser({
+          username,
+          email: userData.email,
+          password: process.env.SOCIAL_PASSWORD, // Assuming this is a fixed password for social logins
+        });
+      } catch (error) {
+        return res.status(400).json({ message: error.message });
+      }
     }
     const accessToken = authHelpers.generateTokensAndSetCookie(res, foundUser);
     res.status(202).json({ accessToken });
   }
 });
+
+//
 const FacebookLogin = asyncHandler(async (req, res) => {
   const { data } = req.body;
   if (!data || !data?.name || !data?.id || !data?.email)

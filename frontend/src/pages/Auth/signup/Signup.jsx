@@ -3,7 +3,7 @@ import Logo from "../../../assets/icons/Logo.svg";
 import { Link } from "react-router-dom";
 import SignupForm from "./components/SignupForm";
 import { BackgroundBeams } from "../../../components/Background";
-export function Signup() {
+export default function Signup() {
   return (
     <div className="w-full h-[100dvh] min-h-[700px] flex justify-center items-center relative bg-no-repeat bg-center bg-cover background-overlay bg-opacity-20">
       <BackgroundBeams></BackgroundBeams>

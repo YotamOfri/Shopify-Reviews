@@ -15,7 +15,7 @@ export default function SubmitButton({ onClick, isPending, text }) {
     >
       <p>
         {isPending ? (
-          <Loading color={"stroke-secondary"} size={"w-6 h-6"}></Loading>
+          <Loading color={"stroke-white z-10"} size={"w-6 h-6"}></Loading>
         ) : (
           text
         )}

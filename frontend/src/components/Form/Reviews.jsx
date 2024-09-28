@@ -4,6 +4,7 @@ import Trash from "../../assets/icons/trash.svg";
 import X from "../../assets/icons/close.svg";
 import PropTypes from "prop-types";
 import Input from "../Inputs/Input";
+import DateInput from "../Inputs/InputDate";
 import { CgUser, CgImage } from "react-icons/cg";
 export default function Reviews({ rows, setRows }) {
   const addImage = (imageUrl, index) => {
@@ -133,6 +134,16 @@ export default function Reviews({ rows, setRows }) {
                   </button>
                 </div>
               </div>
+              <DateInput
+                title="Review Date"
+                value={row.created_at || ""}
+                onChange={(value) =>
+                  handleInputChange(index, {
+                    target: { name: "created_at", value },
+                  })
+                }
+                className="w-full"
+              />
               {row.photo_urls.length > 0 && (
                 <>
                   <div className="flex gap-2 flex-wrap">

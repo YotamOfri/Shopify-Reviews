@@ -53,7 +53,7 @@ export default {
         60: "60",
       },
       colors: {
-        mainBg: "#060912",
+        mainBg: "#0C0F18",
         secondBg: "#05070e",
         text: "#161616",
         "secondary-text": "#C9C9C9",

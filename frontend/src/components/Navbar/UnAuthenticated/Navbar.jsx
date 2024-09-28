@@ -1,4 +1,4 @@
-import Logo from "../../assets/icons/Logo.svg";
+import Logo from "../../../assets/icons/Logo.svg";
 import Mobile from "./Moblie";
 import { Link } from "react-router-dom";
 export default function Navbar() {
@@ -11,13 +11,23 @@ export default function Navbar() {
         >
           <img src={Logo} width={40} alt="" />
         </Link>
-        <ul className="lg:flex hidden">
-          <Link to={"reviews"}>Reviews</Link>
+        <ul className="lg:flex hidden ">
+          <Link
+            to={"reviews"}
+            className="hover:text-indigo-500 duration-200 ease-in-out"
+          >
+            Reviews
+          </Link>
         </ul>
       </div>
       <div className="justify-center lg:flex hidden">
         <ul className="flex gap-4 items-center">
-          <Link to={"/signup"}>Sign up</Link>
+          <Link
+            to={"/signup"}
+            className="hover:text-indigo-500 duration-200 ease-in-out"
+          >
+            Sign up
+          </Link>
           <Link
             to={"/login"}
             className="focus:outline-none duration-200 ease-in-out focus:ring-2  text-white font-semibold h-10 px-8 rounded-lg w-full flex items-center justify-center sm:w-auto bg-indigo-500 highlight-white/20 hover:bg-indigo-400 text-sm"

@@ -11,6 +11,7 @@ export default function Form() {
     photo: "",
     photo_urls: [],
     name: "",
+    created_at: "",
     isVisible: false,
   };
   const [productHandle, setProductHandle] = useState("");
@@ -34,7 +35,7 @@ export default function Form() {
         name: row.name,
         country_code: "IL",
         email: "tempMail@gmail.com",
-        created_at: randomTime,
+        created_at: row.created_at || randomTime,
         product_id: productID,
       };
       return RowJson;

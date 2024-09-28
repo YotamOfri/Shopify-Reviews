@@ -4,7 +4,7 @@ import { Blackinput } from "../../../../components/Inputs/Blackinput";
 import Seperator from "../../components/Seperator";
 import Socialbtns from "../../components/Socialbtns/Socialbtns";
 import SubmitButton from "../../components/SubmitButton";
-import LoginAuth from "../../../../hooks/auth/LoginAuth";
+import login from "../../../../hooks/auth/login";
 import { useMutation } from "@tanstack/react-query";
 export default function Loginform() {
   const { setUser } = useContext(WebsiteContext);
@@ -14,7 +14,7 @@ export default function Loginform() {
   const [password, setPassword] = useState("");
   const [errMsg, setErrMesg] = useState("");
   const { mutate, data, isSuccess, isError, error, isPending } = useMutation({
-    mutationFn: LoginAuth,
+    mutationFn: login,
   });
   // submit
   useEffect(() => {
@@ -74,6 +74,7 @@ export default function Loginform() {
       <SubmitButton
         onClick={handleSubmit}
         text={"Continue with email"}
+        isPending={isPending}
       ></SubmitButton>
       {/* Seperator */}
       <Seperator></Seperator>

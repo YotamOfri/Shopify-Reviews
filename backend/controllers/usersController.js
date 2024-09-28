@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const authHelpers = require("../utils/auth/authHelpers");
+const userHelpers = require("../utils/user/userHelpers");
 // @desc Get all users
 // @route GET /users
 // @accsess Private
@@ -15,27 +16,26 @@ const getAllUsers = asyncHandler(async (req, res) => {
 // @route POST /users
 // @accsess Private
 const createNewUser = asyncHandler(async (req, res) => {
-  const { username, email, password, accsess, giveCookie } = req.body;
+  const { username, email, password, giveCookie } = req.body;
   // Confirm data
-  if (!username || !email || !password)
+  if (!username || !email || !password) {
     return res.status(400).json({ message: "All Fields are required" });
-  // Chekc for duplicates
-  const duplicate = await User.findOne({ username }).lean().exec();
-  if (duplicate) return res.status(409).json({ message: "Username Taken" });
-  const emailduplicate = await User.findOne({ email }).lean().exec();
-  if (emailduplicate) return res.status(409).json({ message: "Email Taken" });
-  // Hash password
-  const hasedPassword = await bcrypt.hash(password, 10);
-  const userObject = { username, email, password: hasedPassword, accsess };
-  // Create and Store User
-  const user = await User.create(userObject);
-  // gives back cookie
-  if (user && giveCookie) {
-    const accessToken = authHelpers.generateTokensAndSetCookie(res, user);
-    return res.status(202).json(user);
-  } else if (user)
-    return res.status(202).json({ message: `User ${user.username} Created!` });
-  else return res.status(400).json({ message: "Invalid user data received" });
+  }
+  try {
+    const user = await userHelpers.createUser({ username, email, password });
+    // gives back cookie
+    if (user && giveCookie) {
+      const accessToken = authHelpers.generateTokensAndSetCookie(res, user);
+      return res.status(202).json(user);
+    } else if (user) {
+      return res
+        .status(202)
+        .json({ message: `User ${user.username} Created!` });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(409).json({ message: error.message });
+  }
 });
 // @desc Update user
 // @route Patch /users

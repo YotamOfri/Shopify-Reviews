@@ -1,5 +1,5 @@
 import axios from "axios";
-export default async function LoginAuth(Account) {
+export default async function login(Account) {
   try {
     const response = await axios.post("http://localhost:3500/auth", Account, {
       withCredentials: true,

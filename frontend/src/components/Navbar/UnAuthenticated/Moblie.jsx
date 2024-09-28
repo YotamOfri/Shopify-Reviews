@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Pivot as Hamburger } from "hamburger-react";
-import Github from "../../assets/icons/github.svg";
 export default function Mobile() {
   const [mobileVis, setMobileVis] = useState(false);
   useEffect(() => {
@@ -15,15 +14,11 @@ export default function Mobile() {
       <ul
         className={`${
           mobileVis ? "h-[100dvh] overflow-y-scroll" : "h-0"
-        }  transition-height duration-500 ease-in-out bg-black flex flex-col px-16 gap-8 w-screen text-xl font-medium overflow-hidden fixed top-0 left-0`}
+        }  transition-height duration-500 ease-in-out bg-mainBg flex flex-col px-16 gap-8 w-screen text-xl font-medium overflow-hidden fixed top-0 left-0 visible lg:hidden`}
       >
-        <div className="flex flex-col gap-8 child-hover:opacity-70 child:duration-300 child:ease-in-out">
-          <li className="h-[1px] p-4 bg-black"></li>
-          <Link
-            onClick={() => setMobileVis(!mobileVis)}
-            to="/"
-            className="hover:opacity-70 duration-300 ease-in-out"
-          >
+        <div className="flex flex-col gap-8 child-hover:text-indigo-500 child:duration-300 child:ease-in-out">
+          <li className="h-[1px] p-4 bg-mainBg"></li>
+          <Link onClick={() => setMobileVis(!mobileVis)} to="/">
             Home
           </Link>
           <Link onClick={() => setMobileVis(!mobileVis)} to="reviews">
